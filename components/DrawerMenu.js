@@ -35,8 +35,8 @@ export default function DrawerMenu({ closeDrawer }) {
         await AsyncStorage.removeItem('token');
         dispatch(logout());
         Alert.alert('Logout successful');
-        handleCloseMenu(); // Cierra el menú
-        navigation.navigate('Home'); // Redirige al login
+        handleCloseMenu();
+        navigation.navigate('Home');
     };
 
     return (
@@ -44,8 +44,6 @@ export default function DrawerMenu({ closeDrawer }) {
             <TouchableOpacity className="absolute top-4 right-2" onPress={handleCloseMenu}>
                 <Image source={iconClose} className="w-7 h-7" />
             </TouchableOpacity>
-
-            {/* Mostrar "Home" siempre */}
             <TouchableOpacity
                 className="w-2/3 flex flex-row items-center justify-start pl-2 mt-4"
                 onPress={() => {
@@ -55,8 +53,6 @@ export default function DrawerMenu({ closeDrawer }) {
             >
                 <Text className="text-2xl font-semibold">Home</Text>
             </TouchableOpacity>
-
-            {/* Mostrar "Login" y "Register" si no está autenticado */}
             {!token && (
                 <>
                     <TouchableOpacity
@@ -78,8 +74,6 @@ export default function DrawerMenu({ closeDrawer }) {
                     </TouchableOpacity>
                 </>
             )}
-
-            {/* Mostrar "Logout" si está autenticado */}
             {token && (
                 <TouchableOpacity
                     className="w-2/3 flex flex-row items-center justify-start pl-2 mt-4"

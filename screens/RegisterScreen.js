@@ -32,7 +32,7 @@ export default function RegisterScreen() {
             navigation.navigate('Home');
         } catch (error) {
             console.error('Error al registrar:', error.response ? error.response.data : error.message);
-            dispatch(loginFail('Error during registration')); // Despachar acción de error
+            dispatch(loginFail('Error during registration'));
             Alert.alert('Error', 'Invalid email or password');
         }
     }

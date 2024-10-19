@@ -4,23 +4,21 @@ import Layout from '../components/Layout.js';
 import ProductsList from '../components/ProductsList.js';
 
 export default function HomeScreen() {
-    const [footerVisible, setFooterVisible] = useState(false); // Estado para controlar el footer
+    const [footerVisible, setFooterVisible] = useState(false);
 
-    // Función que se llamará al llegar al final de la lista
     const handleEndReached = () => {
-        setFooterVisible(true); // Mostrar el footer
+        setFooterVisible(true);
     };
 
     const handleScroll = (event) => {
-        const offsetY = event.nativeEvent.contentOffset.y; // Obtener la posición de desplazamiento
-        const contentHeight = event.nativeEvent.contentSize.height; // Obtener la altura total del contenido
-        const layoutHeight = event.nativeEvent.layoutMeasurement.height; // Obtener la altura visible
+        const offsetY = event.nativeEvent.contentOffset.y;
+        const contentHeight = event.nativeEvent.contentSize.height;
+        const layoutHeight = event.nativeEvent.layoutMeasurement.height;
 
-        // Mostrar el footer solo si estamos cerca del final del contenido
         if (offsetY + layoutHeight >= contentHeight - 50) {
-            setFooterVisible(true); // Si estamos cerca del final, mostrar el footer
+            setFooterVisible(true);
         } else {
-            setFooterVisible(false); // Ocultar el footer al desplazarse hacia arriba
+            setFooterVisible(false);
         }
     };
 
@@ -28,8 +26,8 @@ export default function HomeScreen() {
         <SafeAreaView className="flex-1 bg-gray-200">
             <Layout footerVisible={footerVisible}>
                 <ProductsList
-                    onScroll={handleScroll} // Pasamos el manejador de scroll
-                    onEndReached={handleEndReached} // Pasamos el manejador de fin de la lista
+                    onScroll={handleScroll}
+                    onEndReached={handleEndReached}
                 />
             </Layout>
         </SafeAreaView>

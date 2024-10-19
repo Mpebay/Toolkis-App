@@ -8,7 +8,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
     const [showCart, setShowCart] = useState(false);
-    const scrollViewRef = useRef(); // Referencia al ScrollView
+    const scrollViewRef = useRef();
 
     const toggleMenu = () => {
         if (showCart) setShowCart(false);

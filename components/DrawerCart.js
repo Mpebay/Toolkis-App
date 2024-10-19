@@ -49,12 +49,9 @@ export default function DrawerCart({ closeDrawer, }) {
     const handleProceedToPayment = async () => {
         const token = await AsyncStorage.getItem('token');
         if (!token) {
-            // Si no hay token, redirigir a la pantalla de login
             Alert.alert('You need to be logged in to proceed to payment');
-            navigation.navigate('Login'); // Redirigir a la pantalla de Login
+            navigation.navigate('Login');
         } else {
-            // Si el usuario está logueado, proceder con el pago
-            // Asume que tienes una pantalla de pago
         }
     };
 

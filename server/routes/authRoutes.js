@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
-// Registro de usuario
 router.post('/register', async (req, res) => {
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
@@ -17,14 +16,13 @@ router.post('/register', async (req, res) => {
         await newUser.save();
 
         const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        return res.status(201).json({ token }); // Corrige aquí
+        return res.status(201).json({ token });
     } catch (error) {
-        console.error('Error al registrar usuario:', error); // Esto te dará más información en la consola
+        console.error('Error al registrar usuario:', error);
         res.status(400).json({ error: error.message || 'User already exists or invalid data' });
     }
 });
 
-// Login de usuario
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
