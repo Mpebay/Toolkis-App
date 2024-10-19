@@ -18,7 +18,6 @@ const ProductDetail = () => {
         setCount(1);
     };
 
-
     return (
         <Layout>
             <ScrollView className="flex px-4 bg-gray-100 w-full h-full">

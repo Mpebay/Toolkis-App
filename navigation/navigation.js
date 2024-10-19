@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen.js';
 import LoginScreen from '../screens/LoginScreen.js';
 import RegisterScreen from '../screens/RegisterScreen.js';
 import ProductDetails from "../components/ProductDetails.js"
+import SplashScreen from '../components/SplashScreen.js';
 
 export default function Navigation() {
 
@@ -19,6 +20,7 @@ export default function Navigation() {
                     headerShown: false
                 }}
             >
+                <Stack.Screen name="Splash" component={SplashScreen} />
                 <Stack.Screen name="Home" component={HomeScreen} />
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Register" component={RegisterScreen} />
