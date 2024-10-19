@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { FlatList, TextInput, View } from "react-native";
+import { FlatList, TextInput, View, Text } from "react-native";
 import products from "../products.js";
 import ProductCard from "./ProductCard.js";
 
-export default function ProductsList() {
+export default function ProductsList({ onScroll, onEndReached }) {
     const [searchText, setSearchText] = useState("");
+    const [notification, setNotification] = useState("");
     const numColumns = 2;
 
     const filteredProducts = products.filter(product => {
@@ -13,6 +14,13 @@ export default function ProductsList() {
             product.brand.toLowerCase().startsWith(searchText.toLowerCase())
         );
     });
+
+    const showNotification = (message) => {
+        setNotification(message);
+        setTimeout(() => {
+            setNotification("");
+        }, 2000);
+    };
 
     return (
         <>
@@ -24,17 +32,23 @@ export default function ProductsList() {
                     onChangeText={(text) => setSearchText(text)}
                 />
             </View>
+            {notification ? (
+                <View className="bg-[#008B8B] p-2 mb-2 items-center">
+                    <Text className="text-white">{notification}</Text>
+                </View>
+            ) : null}
             <FlatList
                 contentContainerStyle={{ paddingBottom: 20 }}
                 data={filteredProducts}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => <ProductCard {...item} />}
+                renderItem={({ item }) => <ProductCard {...item} showNotification={showNotification} />}
                 className="w-full h-full bg-gray-200"
                 numColumns={numColumns}
-
+                onEndReached={onEndReached}
+                onEndReachedThreshold={0.1}
+                onScroll={onScroll}
+                scrollEventThrottle={16}
             />
-
-
         </>
     );
 }
